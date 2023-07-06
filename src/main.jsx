@@ -17,8 +17,11 @@ import { FestivalContextProvider } from "./context/FestivalContext.jsx";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#000514", // Color primario
+      main: "#09071D", // Color primario
       contrastText: "#dad2d2",
+    },
+    background: {
+      default: "#09071D",
     },
   },
 });

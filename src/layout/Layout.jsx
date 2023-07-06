@@ -1,13 +1,13 @@
-import { Content } from './Content';
-import Navbar from './Navbar';
+import { Content } from "./Content";
+import Navbar from "./Navbar";
 
 const Layout = () => {
-    return (
-      <div>
-        <Navbar />
-        <Content />
-      </div>
-    );
-  };
+  return (
+    <div>
+      <Navbar />
+      <Content />
+    </div>
+  );
+};
 
-  export default Layout;
+export default Layout;
