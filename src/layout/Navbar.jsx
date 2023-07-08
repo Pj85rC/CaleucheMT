@@ -1,6 +1,4 @@
 import {
-  // Badge,
-  // Button,
   AppBar,
   Box,
   Drawer,
@@ -11,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { NavDrawer } from "./NavDrawer";
@@ -18,6 +17,12 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 
 const Navbar = ({ navLinks }) => {
   const [open, setOpen] = useState(false);
+
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { Link, NavLink } from "react-router-dom";
+
 
   return (
     <>
@@ -28,6 +33,7 @@ const Navbar = ({ navLinks }) => {
       >
         <Toolbar sx={{ height: "100%" }}>
           <Grid container alignItems="center">
+
             <Grid item xs={12} sm={3} md={4} alignItems="center" container>
               <IconButton
                 color="#09071D"
@@ -54,6 +60,7 @@ const Navbar = ({ navLinks }) => {
                 direction="row"
                 sx={{ display: { xs: "none", sm: "flex" } }}
               >
+
                 {navLinks.map((i) => {
                   const IconComponent =
                     i.icon === "AccountCircle" ? AccountCircle : null;
@@ -78,31 +85,16 @@ const Navbar = ({ navLinks }) => {
             </Grid>
           </Grid>
 
-          {/* <Link component={NavLink} to="/" color="inherit">
-            Home
-          </Link>
-          <Link component={NavLink} to="/festivales">
-            Festivales
-          </Link>
-          <Link component={NavLink} to="/quienesSomos">
-            Quienes Somos
-          </Link>
-          <Link component={NavLink} to="/contactanos">
-            Contáctanos
-          </Link>
-          <IconButton color="#09071D">
-            
-            <MailIcon /> */}
+            <MailIcon />
+            {/* </Badge> */}
+          </IconButton>
 
-          {/* </IconButton>
           <IconButton color="#09071D">
             <NotificationsIcon />
           </IconButton>
           <IconButton color="#09071D">
             <AccountCircle />
-          </IconButton> */}
-        </Toolbar>
-      </AppBar>
+
 
       <Drawer
         open={open}
@@ -112,7 +104,11 @@ const Navbar = ({ navLinks }) => {
       >
         <NavDrawer navLinks={navLinks} NavLink={NavLink} setOpen={setOpen} />
       </Drawer>
-    </>
+
+          </IconButton>
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 };
 
