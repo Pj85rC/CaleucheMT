@@ -26,9 +26,9 @@ const Navbar = ({ navLinks }) => {
         sx={{ backgroundColor: "#F9F9F9", color: "#09071D", height: "90px"  }}
         
       >
-        <Toolbar>
-          <Grid container alignItems="center">
-            <Grid item xs={12} sm={6} alignItems="center" container>
+        <Toolbar sx={{height:"100%"}}  >
+          <Grid container alignItems="center" >
+            <Grid xs={12} sm={6} alignItems="center" container>
               <IconButton
                 color="#09071D"
                 size="large"
@@ -50,7 +50,7 @@ const Navbar = ({ navLinks }) => {
 
             {/* <Stack direction="row" spacing={2} alignItems="center"  > */}
 
-            <Grid item sm={6}>
+            <Grid sm={6}>
               <Stack
                 className="myStack"
                 direction="row"
