@@ -4,6 +4,7 @@ import {
   AppBar,
   Box,
   Drawer,
+  Grid,
   IconButton,
   Stack,
   Toolbar,
@@ -22,34 +23,49 @@ const Navbar = ({ navLinks }) => {
       <AppBar
         position="fixed"
         color="transparent"
-        sx={{ backgroundColor: "#F9F9F9", color: "#09071D" }}
+        sx={{ backgroundColor: "#F9F9F9", color: "#09071D", height: "90px"  }}
+        
       >
         <Toolbar>
-          <IconButton
-            color="#09071D"
-            size="large"
-            onClick={() => setOpen(true)}
-            sx={{ display: { xs: "flex", sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component={NavLink}
-            to="/"
-            sx={{ flexGrow: 1 }}
-          >
-            Caleuche
-          </Typography>
-          {/* <Stack direction="row" spacing={2} alignItems="center"  > */}
-          <Stack sx={{ display: { xs: "none", sm: "block" } }}>
-            {navLinks.map((i) => (
-              <Link key={i.title} component={NavLink} to={i.path}>
-                {i.title}
-              </Link>
-            ))}
+          <Grid container alignItems="center">
+            <Grid item xs={12} sm={6} alignItems="center" container>
+              <IconButton
+                color="#09071D"
+                size="large"
+                onClick={() => setOpen(true)}
+                sx={{ display: { sm: "none" } }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                className="title"
+                variant="h6"
+                component={NavLink}
+                to="/"
+                sx={{ flexGrow: 1 }}
+              >
+                Caleuche
+              </Typography>
+            </Grid>
 
-            {/* <Link component={NavLink} to="/" color="inherit">
+            {/* <Stack direction="row" spacing={2} alignItems="center"  > */}
+
+            <Grid item sm={6}>
+              <Stack
+                className="myStack"
+                direction="row"
+                sx={{ display: { xs: "none", sm: "flex" } }}
+              >
+                {navLinks.map((i) => (
+                  <Link key={i.title} component={NavLink} to={i.path}>
+                    {i.title}
+                  </Link>
+                ))}
+              </Stack>
+            </Grid>
+          </Grid>
+
+          {/* <Link component={NavLink} to="/" color="inherit">
             Home
           </Link>
           <Link component={NavLink} to="/festivales">
@@ -65,14 +81,13 @@ const Navbar = ({ navLinks }) => {
             
             <MailIcon /> */}
 
-            {/* </IconButton>
+          {/* </IconButton>
           <IconButton color="#09071D">
             <NotificationsIcon />
           </IconButton>
           <IconButton color="#09071D">
             <AccountCircle />
           </IconButton> */}
-          </Stack>
         </Toolbar>
       </AppBar>
 
@@ -80,13 +95,9 @@ const Navbar = ({ navLinks }) => {
         open={open}
         anchor="left"
         onClose={() => setOpen(false)}
-        sx={{ display: { xs: "none", sm: "block" } }}
+        sx={{ display: { xs: "flex", sm: "none" } }}
       >
-        <NavDrawer 
-        navLinks={navLinks} 
-        NavLink={NavLink} 
-        setOpen={setOpen}
-        />
+        <NavDrawer navLinks={navLinks} NavLink={NavLink} setOpen={setOpen} />
       </Drawer>
     </>
   );
