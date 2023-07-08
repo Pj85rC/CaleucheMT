@@ -28,7 +28,7 @@ const Navbar = ({ navLinks }) => {
       >
         <Toolbar sx={{height:"100%"}}  >
           <Grid container alignItems="center" >
-            <Grid xs={12} sm={6} alignItems="center" container>
+            <Grid item xs={12} sm={3} md={4} alignItems="center" container>
               <IconButton
                 color="#09071D"
                 size="large"
@@ -48,18 +48,20 @@ const Navbar = ({ navLinks }) => {
               </Typography>
             </Grid>
 
-            {/* <Stack direction="row" spacing={2} alignItems="center"  > */}
-
-            <Grid sm={6}>
+            <Grid item xs={0} sm={9} md={8}>
               <Stack
                 className="myStack"
                 direction="row"
                 sx={{ display: { xs: "none", sm: "flex" } }}
               >
                 {navLinks.map((i) => (
-                  <Link key={i.title} component={NavLink} to={i.path}>
-                    {i.title}
-                  </Link>
+                  <Box key={i.title} component={NavLink} to={i.path}
+                  sx={{fontSize:{
+                    sm: '11px',
+                    md: '15px'
+                  }}}>
+                    {i.icon ===  'AccountCircle' ? i.title : null }{i.title}
+                  </Box>
                 ))}
               </Stack>
             </Grid>
