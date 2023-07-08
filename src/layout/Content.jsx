@@ -8,6 +8,8 @@ import { PerfilUsuario } from "../views/PerfilUsuario";
 import { Festivales } from "../views/Festivales";
 import { DetalleFestivales } from "../views/DetalleFestivales";
 
+
+
 export const Content = () => {
     return (
       <>
