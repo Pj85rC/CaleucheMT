@@ -6,41 +6,58 @@ import { useTheme } from "@emotion/react";
 export const Login = () => {
   const theme = useTheme();
   return (
-    <Container maxWidth="xs">
-      <Box
+    <Box
+      maxWidth="xs"
+      sx={{
+        width: "100vw",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Container
+        maxWidth="sm"
         sx={{
           display: "flex",
-          direction: "column",
-          alignItems: "center",
+          flexDirection: "column",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <h1>Login</h1>
+        <h1 style={{ color: "white" }}>Login</h1>
         <Grid container spacing={3}>
-          <Grid item >
-            <Input label="Nombre de Usuario" />
+          <Grid item xs={12}>
+            <Input label="Nombre de Usuario" style={{ width: "100%" }} />
           </Grid>
-          <Grid item >
-            <Input label="Contraseña" isPassword />
+          <Grid item xs={12}>
+            <Input label="Contraseña" style={{ width: "100%" }} isPassword />
           </Grid>
-          <Grid item xs={12} sm={8} md={6}>
-            <Buttons texto="Iniciar Sesion" style={{ width: "100%" }} />
-          </Grid>
-          <Divider
-            style={{
-              backgroundColor: theme.palette.primary.main,
-              width: "100%",
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-          />
-          <Grid item xs={12} sm={8} md={6}>
-            <Buttons
-              variant="contained"
-              texto="Crear Cuenta"
-              style={{ width: "100%" }}
+          >
+            <Grid item xs={12} sx={{ marginBlock: "25px" }}>
+              <Buttons variant="contained" texto="Iniciar Sesion" />
+            </Grid>
+            <Divider
+              sx={{
+                height: "1px",
+                width: "100%",
+                borderColor: theme.palette.primary.main,
+              }}
             />
+            <Grid item xs={12} sx={{ marginBlock: "25px" }}>
+              <Buttons variant="contained" texto="Crear Cuenta" />
+            </Grid>
           </Grid>
         </Grid>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 };
