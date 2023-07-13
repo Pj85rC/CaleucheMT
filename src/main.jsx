@@ -23,7 +23,7 @@ const theme = createTheme({
       main: "#E9E8EA", //Para algunos parrafos
     },
     background: {
-      default: "#09071D", //Background
+      default: "#09071D", //Background y texto botón contained
     },
     text: {
       card: "#C3D0F2", //Para textos de la card

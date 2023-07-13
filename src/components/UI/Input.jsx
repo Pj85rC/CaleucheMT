@@ -1,9 +1,9 @@
 import { IconButton, InputAdornment, TextField, useTheme } from "@mui/material";
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-// import {  } from "@emotion/react";
 
-export const Input = ({ label, isPassword }) => {
+
+export const Input = ({ label, isPassword, style }) => {
   const [showPasword, setShowPasword] = useState(false);
   const theme = useTheme();
 
@@ -15,6 +15,7 @@ export const Input = ({ label, isPassword }) => {
     <TextField
       type={isPassword ? (showPasword ? "text" : "password") : "text"}
       label={label}
+      style={style}
       InputLabelProps={{
         style: { color: theme.palette.primary.main },
       }}
