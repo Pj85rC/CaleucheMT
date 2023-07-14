@@ -28,7 +28,7 @@ const navLinks = [
     icon: <MailIcon />,
   },
   {
-    title: "MI CUENTA",
+    title: "CUENTA | REGISTRO",
     path: "/login",
     icon: <AccountCircle />,
   },

@@ -28,6 +28,9 @@ const theme = createTheme({
     text: {
       card: "#C3D0F2", //Para textos de la card
     },
+    background2: {
+      default: "#1F1B4E",  //Background modal
+    }
   },
   components: {
     MuiOutlinedInput: {

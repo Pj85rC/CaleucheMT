@@ -10,6 +10,7 @@ import { Button, useTheme } from "@mui/material";
 export const Buttons = ({
   texto,
   variant,
+  onClick
 }) => {
   const theme = useTheme();
 
@@ -38,6 +39,7 @@ export const Buttons = ({
         borderWidth: 1,
         borderStyle: "solid",
       }}
+      onClick={onClick}
     >
       {texto}
     </Button>
