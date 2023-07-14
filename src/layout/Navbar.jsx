@@ -39,6 +39,7 @@ const Navbar = ({ navLinks }) => {
               <Typography
                 className="title"
                 variant="h6"
+                fontSize="23px"
                 component={NavLink}
                 to="/"
                 sx={{ flexGrow: 1 }}
