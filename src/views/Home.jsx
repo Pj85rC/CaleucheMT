@@ -1,22 +1,33 @@
 import { useTheme } from "@emotion/react";
-import { Buttons } from "../components/UI/Buttons";
+import { Box, Container } from "@mui/material";
 
 export const Home = () => {
   const theme = useTheme();
   return (
-    <>
-      <h1>Home</h1>
-      <Buttons
-        variant="outlined"
-        color={theme.palette.primary.main}
-        texto="ENTRAR"
-        borderColor={theme.palette.primary.main}
-      />
-      <Buttons
-        variant="contained"
-        backgroundColor={theme.palette.primary.main}
-        texto="FINALIZAR"
-      />
-    </>
+    <Box
+      sx={{
+        width: "100vw",
+        display: "flex",
+        backgroundImage: "url( https://abismoblogzine.com/data/media/2019/05/Hellfest-2018_Festival-Site-HF18-1674.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        // minHeight: "100vh",
+        wrap: "wrap",
+      }}
+    >
+      <Container maxWidth="xl">
+        <h1
+          style={{
+            color: theme.palette.primary.main,
+            fontSize: "2.5rem",
+            textAlign: "center",
+          }}
+        >
+          Bienvenidos a Caleuche Metal Tours
+        </h1>
+      </Container>
+     
+    </Box>
   );
 };

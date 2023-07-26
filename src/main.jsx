@@ -10,9 +10,9 @@ import "@fontsource/roboto/700.css";
 
 import { BrowserRouter } from "react-router-dom";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { MainContextProvider } from "./context/MainContext.jsx";
-import { AuthContextProvider } from "./context/AuthContext.jsx";
-import { FestivalContextProvider } from "./context/FestivalContext.jsx";
+import { MainProvider } from "./context/MainContext.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
+import { FestivalProvider } from "./context/FestivalContext.jsx";
 
 const theme = createTheme({
   palette: {
@@ -56,17 +56,17 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <MainContextProvider>
-      <AuthContextProvider>
-        <FestivalContextProvider>
+    <MainProvider>
+      <AuthProvider>
+        <FestivalProvider>
           <BrowserRouter>
             <CssBaseline />
             <ThemeProvider theme={theme}>
               <App />
             </ThemeProvider>
           </BrowserRouter>
-        </FestivalContextProvider>
-      </AuthContextProvider>
-    </MainContextProvider>
+        </FestivalProvider>
+      </AuthProvider>
+    </MainProvider>
   </React.StrictMode>
 );

@@ -1,16 +1,21 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import festivalData from "../data/festivalData.json"
 
 const FestivalContext = createContext();
 
-export const FestivalContextProvider = ({ children }) => {
-  const [festival, setFestival] = useState("");
+export const FestivalProvider = ({ children }) => {
+  const [festivals, setFestivals] = useState("");
 
-  const FestivalState = {
-    festival,
-    setFestival,
-  };
-
+ 
+  useEffect(() => {
+    setFestivals(festivalData);
+  }, []);
+  
   return (
-    <FestivalContext.Provider value={FestivalState}>{children}</FestivalContext.Provider>
+    <FestivalContext.Provider value={festivals}>
+      {children}
+    </FestivalContext.Provider>
   );
 };
+
+export default FestivalContext;

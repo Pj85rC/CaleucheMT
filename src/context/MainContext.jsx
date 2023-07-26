@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const MainContext = createContext();
 
-export const MainContextProvider = ({ children }) => {
+export const MainProvider = ({ children }) => {
   const [data, setData] = useState("");
 
   const GlobalState = {
