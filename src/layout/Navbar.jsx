@@ -11,11 +11,11 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
+import navLinks from "../data/navLinks";
 
-const Navbar = ({ navLinks }) => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -55,8 +55,6 @@ const Navbar = ({ navLinks }) => {
                 sx={{ display: { xs: "none", sm: "flex" } }}
               >
                 {navLinks.map((i) => {
-                  const IconComponent =
-                    i.icon === "AccountCircle" ? AccountCircle : null;
                   return (
                     <Box
                       key={i.title}
@@ -69,7 +67,7 @@ const Navbar = ({ navLinks }) => {
                         },
                       }}
                     >
-                      {IconComponent && <IconComponent />}
+                      {i.icon === "AccountCircle" ? AccountCircle : null}
                       {i.title}
                     </Box>
                   );
