@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Container,
-  Divider,
-  Typography
-} from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import { Input } from "../components/UI/Input";
 import { Buttons } from "../components/UI/Buttons";
 import { useTheme } from "@emotion/react";
@@ -28,10 +23,11 @@ export const Login = () => {
   return (
     <Box
       sx={{
-        width: "100vw",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        pt: "70px", 
       }}
     >
       <Container

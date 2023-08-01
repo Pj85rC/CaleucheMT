@@ -8,10 +8,11 @@ export const Registro = () => {
   return (
     <Box
       sx={{
-        width: "100vw",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        pt: "70px",
       }}
     >
       <Container

@@ -6,11 +6,24 @@ const Layout = () => {
   return (
     <Box
       sx={{
-        marginTop: "70px",
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        width: "100vw",
+        position: "relative",
       }}
     >
       <Navbar />
-      <Content />
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          overflow: "auto",
+          mt: 2,
+        }}
+      >
+        <Content />
+      </Box>
     </Box>
   );
 };
