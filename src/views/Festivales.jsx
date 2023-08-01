@@ -1,43 +1,84 @@
-import { useContext } from 'react';
-import FestivalContext from '../context/FestivalContext';
-import { Box, Container, Grid } from "@mui/material";
+import { useContext } from "react";
+import FestivalContext from "../context/FestivalContext";
+import { Box, Container } from "@mui/material";
 import { FestivalCard } from "../components/UI/FestivalCard";
 import { useTheme } from "@emotion/react";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export const Festivales = () => {
   const theme = useTheme();
   const festivals = useContext(FestivalContext);
   /* const [loading, setLoading] = useState(false); */
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+  };
 
   return (
     <Box
       sx={{
-        width: "100vw",
+        width: "100%",
         display: "flex",
-        wrap: "wrap",
+        flexDirection: "column",
+        alignItems: "center",
+        pt: "70px",
       }}
     >
       <Container maxWidth="xl">
-        <h1 style={{ color: theme.palette.primary.main, fontSize: "2.5rem", textAlign:'center'}}>Festivales</h1>
-        { festivals.length > 0 ? (
-            <Grid container spacing={3} justifyContent="center">
-              {festivals.map((festival, i) => (
-                <Grid item xs={12} sm={6} md={4} key={i}>
-                  <FestivalCard
-                    title={festival.title}
-                    imageUrl={festival.imageUrl}
-                    description={festival.description}
-                    lineup={festival.lineup}
-                    // onDetailClick={}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          ) : (
-            <h2>No hay festivales</h2>
-          )
-        }
+        <h1
+          style={{
+            color: theme.palette.primary.main,
+            fontSize: "2.5rem",
+            textAlign: "center",
+          }}
+        >
+          Festivales
+        </h1>
+        {festivals.length > 0 ? (
+          <Carousel
+            swipeable={false}
+            draggable={true}
+            showDots={true}
+            responsive={responsive}
+            ssr={true}
+            infinite={true}
+            autoPlaySpeed={1000}
+            keyBoardControl={true}
+            customTransition="all .5"
+            transitionDuration={500}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            {festivals.map((festival, i) => (
+              <div key={i} style={{ margin: "0 15px" }}>
+                <FestivalCard
+                  title={festival.title}
+                  imageUrl={festival.imageUrl}
+                  description={festival.description}
+                  lineup={festival.lineup}
+                />
+              </div>
+            ))}
+          </Carousel>
+        ) : (
+          <h2>No hay festivales</h2>
+        )}
       </Container>
     </Box>
   );
