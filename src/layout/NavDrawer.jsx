@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   List,
@@ -19,7 +20,7 @@ const NavDrawer = ({ navLinks, NavLink, setOpen }) => {
                 to={i.path}
                 onClick={() => setOpen(false)}
               >
-                <ListItemIcon>{i.icon}</ListItemIcon>
+                <ListItemIcon>{React.createElement(i.icon)}</ListItemIcon>
                 <ListItemText primary={i.title} />
               </ListItemButton>
             </ListItem>
