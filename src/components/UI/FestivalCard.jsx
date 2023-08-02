@@ -13,7 +13,6 @@ export const FestivalCard = ({
   title,
   imageUrl,
   description,
-  lineup,
   onDetailClick,
 }) => {
   const theme = useTheme();
@@ -40,18 +39,13 @@ export const FestivalCard = ({
             {title}
           </Typography>
           <Typography sx={{ fontSize: 15, mb: 2 }} variant="body2">
-            {" "}
             {description}
-          </Typography>
-          <Typography sx={{ fontSize: 12 }} variant="body2">
-            {" "}
-            {lineup}
           </Typography>
         </CardContent>
       </CardActionArea>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Buttons
-          onClick={() => console.log("Botón cliqueando")}
+          onClick={onDetailClick}
           variant="outlined"
           color={theme.palette.primary.main}
           texto="ver detalle"

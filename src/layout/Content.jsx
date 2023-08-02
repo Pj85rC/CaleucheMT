@@ -21,7 +21,7 @@ export const Content = () => {
           <Route path="/contactanos" element={<Contact />} />
           <Route path="/perfilUsuario" element={<PerfilUsuario />} />
           <Route path="/festivales" element={<Festivales />} />
-          <Route path="/detalleFestivales" element={<DetalleFestivales />} />
+          <Route path="/festival/:id" element={<DetalleFestivales />} />
         </Routes>
       </>
     );
