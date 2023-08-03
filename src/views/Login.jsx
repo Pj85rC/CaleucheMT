@@ -27,7 +27,6 @@ export const Login = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        pt: "70px", 
       }}
     >
       <Container

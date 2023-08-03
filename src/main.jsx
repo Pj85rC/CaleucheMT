@@ -13,6 +13,7 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { MainProvider } from "./context/MainContext.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { FestivalProvider } from "./context/FestivalContext.jsx";
+import { ArtistProvider } from "./context/ArtistContext.jsx";
 
 const theme = createTheme({
   palette: {
@@ -29,8 +30,8 @@ const theme = createTheme({
       card: "#C3D0F2", //Para textos de la card
     },
     background2: {
-      default: "#1F1B4E",  //Background modal
-    }
+      default: "#1F1B4E", //Background modal
+    },
   },
   components: {
     MuiOutlinedInput: {
@@ -59,12 +60,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <MainProvider>
       <AuthProvider>
         <FestivalProvider>
-          <BrowserRouter>
-            <CssBaseline />
-            <ThemeProvider theme={theme}>
-              <App />
-            </ThemeProvider>
-          </BrowserRouter>
+          <ArtistProvider>
+            <BrowserRouter>
+              <CssBaseline />
+              <ThemeProvider theme={theme}>
+                <App />
+              </ThemeProvider>
+            </BrowserRouter>
+          </ArtistProvider>
         </FestivalProvider>
       </AuthProvider>
     </MainProvider>

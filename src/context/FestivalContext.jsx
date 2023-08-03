@@ -1,21 +1,23 @@
 import { createContext, useEffect, useState } from "react";
-import festivalData from "../data/festivalData.json"
+import { GetFestivals } from "../api/festivals";
 
-const FestivalContext = createContext();
+export const FestivalContext = createContext();
 
 export const FestivalProvider = ({ children }) => {
   const [festivals, setFestivals] = useState([]);
 
- 
+  const globalStates = {festivals, setFestivals}
   useEffect(() => {
-    setFestivals(festivalData);
+    const fetchFestivals = async () => {
+      const data = await GetFestivals();
+      setFestivals(data);
+    };
+    fetchFestivals();
   }, []);
-  
+
   return (
-    <FestivalContext.Provider value={festivals}>
+    <FestivalContext.Provider value={globalStates}>
       {children}
     </FestivalContext.Provider>
   );
 };
-
-export default FestivalContext;

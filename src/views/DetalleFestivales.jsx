@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import FestivalContext from "../context/FestivalContext";
+import { FestivalContext } from "../context/FestivalContext";
 import ArtistCard from "../components/UI/ArtistCard";
 import { useTheme } from "@emotion/react";
 import { Box, Container, Grid } from "@mui/material";
@@ -57,7 +57,6 @@ export const DetalleFestivales = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        pt: "70px",
       }}
     >
       <Container maxWidth="xl">

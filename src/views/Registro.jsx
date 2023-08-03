@@ -1,4 +1,4 @@
-import { Box, Container, Divider } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { Input } from "../components/UI/Input";
 import { Buttons } from "../components/UI/Buttons";
 import { useTheme } from "@emotion/react";
@@ -12,7 +12,7 @@ export const Registro = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        pt: "70px",
+        
       }}
     >
       <Container

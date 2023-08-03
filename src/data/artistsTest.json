@@ -1,0 +1,69 @@
+[
+    {
+      "id": 1,
+      "name": "Opeth",
+      "imageUrl": "https://example.com/opeth.jpg",
+      "genres": ["Progressive Metal", "Death Metal"],
+      "socials": {
+        "instagram": "https://instagram.com/officialopeth",
+        "facebook": "https://facebook.com/Opeth",
+        "twitter": "https://twitter.com/OfficialOpeth"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Dream Theater",
+      "imageUrl": "https://example.com/dreamtheater.jpg",
+      "genres": ["Progressive Metal", "Progressive Rock"],
+      "socials": {
+        "instagram": "https://instagram.com/dreamtheaterofficial",
+        "facebook": "https://facebook.com/dreamtheater",
+        "twitter": "https://twitter.com/dreamtheaternet"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Porcupine Tree",
+      "imageUrl": "https://example.com/porcupinetree.jpg",
+      "genres": ["Progressive Rock"],
+      "socials": {
+        "instagram": "https://instagram.com/porcupinetreeofficial",
+        "facebook": "https://facebook.com/PorcupineTree",
+        "twitter": "https://twitter.com/PorcupineTree"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Tool",
+      "imageUrl": "https://example.com/tool.jpg",
+      "genres": ["Progressive Metal", "Alternative Metal"],
+      "socials": {
+        "instagram": "https://instagram.com/toolmusic",
+        "facebook": "https://facebook.com/ToolMusic",
+        "twitter": "https://twitter.com/Tool"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Emperor",
+      "imageUrl": "https://example.com/emperor.jpg",
+      "genres": ["Black Metal", "Symphonic Black Metal"],
+      "socials": {
+        "instagram": "https://instagram.com/emperorofficial",
+        "facebook": "https://facebook.com/emperorofficial",
+        "twitter": "https://twitter.com/emperorband"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Borknagar",
+      "imageUrl": "https://example.com/borknagar.jpg",
+      "genres": ["Progressive Metal", "Black Metal"],
+      "socials": {
+        "instagram": "https://instagram.com/borknagar",
+        "facebook": "https://facebook.com/borknagarofficial",
+        "twitter": "https://twitter.com/BorknagarHQ"
+      }
+    }
+  ]
+  

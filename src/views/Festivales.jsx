@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import FestivalContext from "../context/FestivalContext";
+import { FestivalContext } from "../context/FestivalContext";
 import { Box, Container } from "@mui/material";
 import { FestivalCard } from "../components/UI/FestivalCard";
 import { useTheme } from "@emotion/react";
@@ -10,8 +10,8 @@ import "react-multi-carousel/lib/styles.css";
 export const Festivales = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const festivals = useContext(FestivalContext);
-  /* const [loading, setLoading] = useState(false); */
+  const { festivals } = useContext(FestivalContext);
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -34,7 +34,6 @@ export const Festivales = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        pt: "70px",
       }}
     >
       <Container maxWidth="xl">
@@ -67,8 +66,8 @@ export const Festivales = () => {
             {festivals.map((festival, i) => (
               <div key={i} style={{ margin: "0 15px" }}>
                 <FestivalCard
-                  title={festival.title}
-                  imageUrl={festival.imageUrl}
+                  title={festival.name}
+                  imageUrl={festival.photoURL}
                   description={festival.description}
                   onDetailClick={() => navigate(`/festival/${festival.id}`)}
                 />

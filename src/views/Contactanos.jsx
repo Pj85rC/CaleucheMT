@@ -14,7 +14,6 @@ export const Contact = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        pt: "70px",
       }}
     >
       <Container

@@ -7,6 +7,7 @@ import { Contact } from "../views/Contactanos";
 import { PerfilUsuario } from "../views/PerfilUsuario";
 import { Festivales } from "../views/Festivales";
 import { DetalleFestivales } from "../views/DetalleFestivales";
+import { AddArtist } from '../views/AddArtist'
 
 
 
@@ -22,6 +23,7 @@ export const Content = () => {
           <Route path="/perfilUsuario" element={<PerfilUsuario />} />
           <Route path="/festivales" element={<Festivales />} />
           <Route path="/festival/:id" element={<DetalleFestivales />} />
+          <Route path="/admin/artists" element={<AddArtist />} />
         </Routes>
       </>
     );

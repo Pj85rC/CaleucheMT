@@ -19,7 +19,7 @@ const Layout = () => {
         sx={{
           flexGrow: 1,
           overflow: "auto",
-          mt: 2,
+          mt: "80px",
         }}
       >
         <Content />
