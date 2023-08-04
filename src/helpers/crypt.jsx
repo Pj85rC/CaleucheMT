@@ -9,6 +9,13 @@ export const Encrypt = (string) => {
 };
 
 export const Decrypt = (cryptString) => {
-  const bytes = CryptoJS.AES.decrypt(decodeURIComponent(cryptString), HASH);
-  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  try {
+    const bytes = CryptoJS.AES.decrypt(decodeURIComponent(cryptString), HASH);
+    const decryptedString = bytes.toString(CryptoJS.enc.Utf8);
+
+    return JSON.parse(decryptedString);
+  } catch (error) {
+    console.error("Decryption error:", error);
+    return null;
+  }
 };

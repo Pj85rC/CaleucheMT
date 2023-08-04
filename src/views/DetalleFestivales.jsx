@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FestivalContext } from "../context/FestivalContext";
+import { GetFestivalLineup } from "../api/festivals";
 import ArtistCard from "../components/UI/ArtistCard";
 import { useTheme } from "@emotion/react";
 import { Box, Container, Grid } from "@mui/material";
@@ -8,19 +9,26 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export const DetalleFestivales = () => {
+  const [lineup, setLineup] = useState([]);
   const theme = useTheme();
-
   let { id } = useParams();
-  const festivals = useContext(FestivalContext);
+  const { festivals } = useContext(FestivalContext);
 
-  // Busca el festival por su ID
   const festival = festivals.find((festival) => festival.id === id);
 
-  const artists = festival.lineup;
+  console.log(id);
 
-  console.log(artists);
+  console.log(festival);
 
-  // Verificación en caso de que no se encuentre el festival
+  useEffect(() => {
+    const fetchLineup = async () => {
+      const data = await GetFestivalLineup(id);
+      setLineup(data);
+    };
+
+    fetchLineup();
+  }, [id]);
+
   if (!festival) {
     return (
       <h1
@@ -85,7 +93,7 @@ export const DetalleFestivales = () => {
           </Grid>
         </Grid>
 
-        {festival.lineup.length > 0 ? (
+        {lineup.length > 0 ? (
           <Carousel
             swipeable={false}
             draggable={true}
@@ -102,7 +110,7 @@ export const DetalleFestivales = () => {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {festival.lineup.map((artist, i) => (
+            {lineup.map((artist, i) => (
               <ArtistCard artist={artist} key={i} />
             ))}
           </Carousel>
