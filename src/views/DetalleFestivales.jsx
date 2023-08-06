@@ -14,11 +14,9 @@ export const DetalleFestivales = () => {
   let { id } = useParams();
   const { festivals } = useContext(FestivalContext);
 
-  const festival = festivals.find((festival) => festival.id === id);
+  const festival = festivals.find((festival) => festival.id == id);
 
-  console.log(id);
-
-  console.log(festival);
+  console.log(lineup);
 
   useEffect(() => {
     const fetchLineup = async () => {
@@ -71,7 +69,7 @@ export const DetalleFestivales = () => {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={5}>
             <img
-              src={festival.imageUrl}
+              src={festival.photoURL}
               alt={festival.title}
               style={{ width: "90%", height: "auto", margin: "2rem" }}
             />
