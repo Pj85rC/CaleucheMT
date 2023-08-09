@@ -1,20 +1,61 @@
-import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Button
+} from '@mui/material';
+import { useState } from 'react';
 
-const Artist = ({ artist, handleDelete, handleEdit }) => (
-  <ListItem>
-    <ListItemText
-      primary={artist.name}
-      secondary={artist.genre}
-    />
-    <ListItemSecondaryAction>
-      <IconButton edge="end" aria-label="edit" onClick={() => handleEdit(artist)}>
-        <EditIcon />
-      </IconButton>
-      <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(artist.id)}>
-        <DeleteIcon />
-      </IconButton>
-    </ListItemSecondaryAction>
-  </ListItem>
-);
+const ArtistModal = ({ 
+  open, 
+  artist, 
+  onClose, 
+  onSave 
+}) => {
+  const [localArtist, setLocalArtist] = useState({
+    name: artist.name,
+    genre: artist.genre,
+    
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setLocalArtist(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSave = () => {
+    onSave(localArtist);
+    onClose();
+  };
+
+  return (
+    <Dialog open={open} onClose={onClose}>
+      <DialogTitle>Editar Artista</DialogTitle>
+      <DialogContent>
+        <TextField
+          label="Nombre"
+          name="name"
+          value={localArtist.name}
+          onChange={handleInputChange}
+          fullWidth
+        />
+        {/* Agrega más campos según lo necesites */}
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="primary">
+          Cancelar
+        </Button>
+        <Button onClick={handleSave} color="primary">
+          Guardar
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+export default ArtistModal;
