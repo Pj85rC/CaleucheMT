@@ -1,13 +1,6 @@
 import { Button, useTheme } from "@mui/material";
 
-// export const Buttons = ({
-//   color,
-//   texto,
-//   borderColor,
-//   backgroundColor,
-//   variant,
-// }) => {
-export const Buttons = ({
+export const CustomButton = ({
   texto,
   variant,
   onClick

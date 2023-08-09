@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-const ArtistModal = ({ 
+export const ArtistModal = ({ 
   open, 
   artist, 
   onClose, 
@@ -58,4 +58,4 @@ const ArtistModal = ({
   );
 };
 
-export default ArtistModal;
+

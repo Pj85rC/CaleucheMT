@@ -7,7 +7,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { Buttons } from "./Buttons";
+import { CustomButton } from "./CustomButton";
 
 export const FestivalCard = ({
   title,
@@ -44,7 +44,7 @@ export const FestivalCard = ({
         </CardContent>
       </CardActionArea>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Buttons
+        <CustomButton
           onClick={onDetailClick}
           variant="outlined"
           color={theme.palette.primary.main}

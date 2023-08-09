@@ -3,7 +3,7 @@ import { login } from "../api/auth";
 import { AuthContext } from "../context/AuthContext";
 import { Box, Container, Divider, Typography } from "@mui/material";
 import { Input } from "../components/UI/Input";
-import { Buttons } from "../components/UI/Buttons";
+import { CustomButton } from "../components/UI/CustomButton";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../components/UI/Modal";
@@ -90,7 +90,7 @@ export const Login = () => {
           }}
         />
 
-        <Buttons
+        <CustomButton
           variant="contained"
           texto="Iniciar Sesion"
           onClick={() => handleSubmit({ username, password })}
@@ -117,7 +117,7 @@ export const Login = () => {
           }}
         />
 
-        <Buttons
+        <CustomButton
           variant="contained"
           texto="Crear Cuenta"
           onClick={() => navigate("/registro")}

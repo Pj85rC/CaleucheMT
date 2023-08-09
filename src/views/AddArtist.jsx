@@ -19,11 +19,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ArtistContext from "../context/ArtistContext";
 import { useTheme } from "@emotion/react";
 import { Input } from "../components/UI/Input";
-import { Buttons } from "../components/UI/Buttons";
+import { CustomButton } from "../components/UI/CustomButton";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WebIcon from "@mui/icons-material/Web";
+import { ArtistModal } from "../components/UI/ArtistModal";
 
 export const AddArtist = () => {
   const [artists, setArtists] = useContext(ArtistContext);
@@ -33,6 +34,8 @@ export const AddArtist = () => {
   const [socials, setSocials] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [editingArtist, setEditingArtist] = useState(null);
 
   const theme = useTheme();
 
@@ -54,14 +57,28 @@ export const AddArtist = () => {
     setSocials("");
   };
 
-  const handleEdit = (artist) => {
-    // Lógica para editar el artista
+  const startEditing = (artist) => {
+    setEditingArtist(artist);
+    setModalOpen(true);
   };
 
- /*  const handleDelete = (id) => {
-    // Lógica para eliminar el artista
+  const handleModalClose = () => {
+    setModalOpen(false);
+    setEditingArtist(null);
   };
- */
+
+  const handleSaveEditedArtist = (updatedArtistData) => {
+    const updatedArtist = {
+      ...editingArtist,
+      ...updatedArtistData,
+    };
+
+    setArtists(
+      artists.map((a) => (a.id === updatedArtist.id ? updatedArtist : a))
+    );
+    handleModalClose();
+  };
+
   const getSocialIcon = (network) => {
     switch (network) {
       case "Facebook":
@@ -142,7 +159,7 @@ export const AddArtist = () => {
                   value={socials}
                   onChange={(e) => setSocials(e.target.value)}
                 />
-                <Buttons variant="contained" texto="AGREGAR" />
+                <CustomButton variant="contained" texto="AGREGAR" />
               </form>
             </Container>
           </Grid>
@@ -190,13 +207,12 @@ export const AddArtist = () => {
                               key={network}
                               onClick={() => window.open(network, "_blank")}
                             >
-                              
                               {getSocialIcon(network)}
                             </IconButton>
                           ))}
                       </TableCell>
                       <TableCell>
-                        <IconButton onClick={() => handleEdit(artist)}>
+                        <IconButton onClick={() => startEditing(artist)}>
                           <EditIcon
                             style={{ color: theme.palette.primary.main }}
                           />
@@ -215,15 +231,23 @@ export const AddArtist = () => {
           </Grid>
         </Grid>
       </Box>
+
+      <ArtistModal
+        open={isModalOpen}
+        artist={editingArtist}
+        onClose={handleModalClose}
+        onSave={handleSaveEditedArtist}
+      />
+
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
         <DialogTitle>¿Deseas eliminar este artista?</DialogTitle>
         <DialogActions>
-          <Buttons
+          <CustomButton
             variant="contained"
             texto="No"
             onClick={() => setDialogOpen(false)}
           />
-          <Buttons variant="contained" texto="Sí" onClick={confirmDelete} />
+          <CustomButton variant="contained" texto="Sí" onClick={confirmDelete} />
         </DialogActions>
       </Dialog>
     </>

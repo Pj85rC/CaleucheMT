@@ -1,6 +1,6 @@
 import { Box, Container } from "@mui/material";
 import { Input } from "../components/UI/Input";
-import { Buttons } from "../components/UI/Buttons";
+import { CustomButton } from "../components/UI/CustomButton";
 import { useTheme } from "@emotion/react";
 
 export const Registro = () => {
@@ -47,7 +47,7 @@ export const Registro = () => {
           isPassword
         />
 
-        <Buttons variant="contained" texto="FINALIZAR" />
+        <CustomButton variant="contained" texto="FINALIZAR" />
       </Container>
     </Box>
   );
