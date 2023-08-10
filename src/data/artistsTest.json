@@ -5,6 +5,7 @@
       "imageUrl": "https://example.com/opeth.jpg",
       "genres": ["Progressive Metal", "Death Metal"],
       "socials": {
+        "website": "http://opeth.com",
         "instagram": "https://instagram.com/officialopeth",
         "facebook": "https://facebook.com/Opeth",
         "twitter": "https://twitter.com/OfficialOpeth"

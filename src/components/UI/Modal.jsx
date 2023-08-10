@@ -7,7 +7,7 @@ import {
   Snackbar, 
   Alert
 } from "@mui/material";
-import { Buttons } from "./Buttons";
+import { CustomButton } from "./CustomButton";
 import { Input } from "./Input";
 import { useState } from 'react'
 
@@ -26,7 +26,7 @@ export const Modal = ({ open, handleClose }) => {
           
         />
         <DialogActions>
-          <Buttons variant="contained" texto="Enviar" onClick={() => { handleClose(); setOpenSnackbar(true);}} />
+          <CustomButton variant="contained" texto="Enviar" onClick={() => { handleClose(); setOpenSnackbar(true);}} />
         </DialogActions>
       </DialogContent>
     </Dialog>

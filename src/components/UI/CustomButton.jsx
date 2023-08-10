@@ -1,10 +1,6 @@
 import { Button, useTheme } from "@mui/material";
 
-export const CustomButton = ({
-  texto,
-  variant,
-  onClick
-}) => {
+export const CustomButton = ({ texto, variant, onClick, ...props }) => {
   const theme = useTheme();
 
   const getButtonStyles = () => {
@@ -21,6 +17,8 @@ export const CustomButton = ({
           backgroundColor: "transparent",
           borderColor: theme.palette.primary.main,
         };
+      default:
+        return {};
     }
   };
 
@@ -33,24 +31,9 @@ export const CustomButton = ({
         borderStyle: "solid",
       }}
       onClick={onClick}
+      {...props}
     >
       {texto}
     </Button>
   );
 };
-
-// return (
-//   <Button
-//     variant={variant === "contained" ? "contained" : "outlined"}
-//     style={{
-//       color: color,
-//       borderColor: borderColor,
-//       backgroundColor: backgroundColor,
-//       borderWidth: 1,
-//       borderStyle: "solid",
-//     }}
-//   >
-//     {texto}
-//   </Button>
-// );
-// };
