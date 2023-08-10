@@ -13,6 +13,7 @@ import {
   Dialog,
   DialogTitle,
   DialogActions,
+  Avatar,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -23,6 +24,7 @@ import { CustomButton } from "../components/UI/CustomButton";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import LanguageIcon from '@mui/icons-material/Language';
 import WebIcon from "@mui/icons-material/Web";
 import { ArtistModal } from "../components/UI/ArtistModal";
 
@@ -79,19 +81,31 @@ export const AddArtist = () => {
     handleModalClose();
   };
 
-  const getSocialIcon = (network) => {
-    switch (network) {
-      case "Facebook":
-        return <FacebookIcon />;
-      case "Twitter":
-        return <TwitterIcon />;
-      case "Instagram":
-        return <InstagramIcon />;
-      case "Web":
-        return <WebIcon />;
+  const getSocialIcon = (social, url) => {
+    let Icon;
+    switch (social) {
+      case "facebook":
+        Icon = FacebookIcon ;
+        break;
+      case "twitter":
+        Icon = TwitterIcon ;
+        break;
+      case "instagram":
+        Icon = InstagramIcon ;
+        break;
+      case "website":
+        Icon = LanguageIcon ;
+        break;
       default:
-        return null;
+        Icon = WebIcon ;
+        break;
     }
+
+    return (
+      <IconButton key={social} onClick={() => window.open(url, "_blank")}>
+        <Icon style={{ color: "white" }} />
+      </IconButton>
+    );
   };
 
   const showDeleteDialog = (id) => {
@@ -116,7 +130,7 @@ export const AddArtist = () => {
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={3}>
             <Container
               maxWidth="xs"
               sx={{
@@ -165,7 +179,7 @@ export const AddArtist = () => {
           </Grid>
           <Grid
             item
-            xs={6}
+            xs={9}
             sx={{
               "& .MuiTableCell-root": { color: theme.palette.primary.main },
             }}
@@ -194,22 +208,18 @@ export const AddArtist = () => {
                   {artists.map((artist) => (
                     <TableRow key={artist.id}>
                       <TableCell>{artist.name}</TableCell>
-                      <TableCell>{artist.imageUrl}</TableCell>
+                      <TableCell>
+                        <Avatar
+                          src={artist.imageUrl}
+                          alt={artist.name}
+                          sx={{ width: 90, height: 90 }}
+                        />
+                      </TableCell>
                       <TableCell>{artist.genres.join(", ")}</TableCell>
                       <TableCell>
-                        {console.log(
-                          "mostrando las rrss de los artistas: ",
-                          artist.socials
+                        {Object.keys(artist.socials).map((social) =>
+                          getSocialIcon(social, artist.socials[social])
                         )}
-                        {Array.isArray(artist.socials) &&
-                          artist.socials.map((network) => (
-                            <IconButton
-                              key={network}
-                              onClick={() => window.open(network, "_blank")}
-                            >
-                              {getSocialIcon(network)}
-                            </IconButton>
-                          ))}
                       </TableCell>
                       <TableCell>
                         <IconButton onClick={() => startEditing(artist)}>
@@ -247,7 +257,11 @@ export const AddArtist = () => {
             texto="No"
             onClick={() => setDialogOpen(false)}
           />
-          <CustomButton variant="contained" texto="Sí" onClick={confirmDelete} />
+          <CustomButton
+            variant="contained"
+            texto="Sí"
+            onClick={confirmDelete}
+          />
         </DialogActions>
       </Dialog>
     </>

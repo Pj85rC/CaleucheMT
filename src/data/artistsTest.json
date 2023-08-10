@@ -2,7 +2,7 @@
     {
       "id": 1,
       "name": "Opeth",
-      "imageUrl": "https://example.com/opeth.jpg",
+      "imageUrl": "https://media.cnnchile.com/sites/2/2023/02/195365687_10159478752928410_3603301802679088578_n.jpg",
       "genres": ["Progressive Metal", "Death Metal"],
       "socials": {
         "website": "http://opeth.com",
@@ -36,7 +36,7 @@
     {
       "id": 4,
       "name": "Tool",
-      "imageUrl": "https://example.com/tool.jpg",
+      "imageUrl": "https://i.scdn.co/image/ab6761610000e5eb13f5472b709101616c87cba3",
       "genres": ["Progressive Metal", "Alternative Metal"],
       "socials": {
         "instagram": "https://instagram.com/toolmusic",
@@ -47,7 +47,7 @@
     {
       "id": 5,
       "name": "Emperor",
-      "imageUrl": "https://example.com/emperor.jpg",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStArjOwzdyNFm5U4JGKz2nqHI76aNvFXeGxLq_ENiMEo248pW6htdQiVgBXK1mln1G1DM&usqp=CAU",
       "genres": ["Black Metal", "Symphonic Black Metal"],
       "socials": {
         "instagram": "https://instagram.com/emperorofficial",
@@ -58,7 +58,7 @@
     {
       "id": 6,
       "name": "Borknagar",
-      "imageUrl": "https://example.com/borknagar.jpg",
+      "imageUrl": "https://setlist.cl/wp-content/uploads/2023/08/SetlistCL-00-ImagenDestacada-Borknagar.jpg",
       "genres": ["Progressive Metal", "Black Metal"],
       "socials": {
         "instagram": "https://instagram.com/borknagar",

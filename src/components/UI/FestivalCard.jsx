@@ -47,9 +47,7 @@ export const FestivalCard = ({
         <CustomButton
           onClick={onDetailClick}
           variant="outlined"
-          color={theme.palette.primary.main}
           texto="ver detalle"
-          borderColor={theme.palette.primary.main}
         />
       </Box>
     </Card>
