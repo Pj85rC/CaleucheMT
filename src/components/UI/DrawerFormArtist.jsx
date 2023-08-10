@@ -1,13 +1,13 @@
 // DrawerFormArtist.jsx
-import { Drawer, Container, Grid } from "@mui/material";
-import { CustomButton } from "../components/UI/CustomButton";
-import { Input } from "../components/UI/Input";
+import { Drawer, Container, Grid, IconButton } from "@mui/material";
+import { CustomButton } from "./CustomButton";
+import { Input } from "./Input";
 import { useState } from "react";
 import { useTheme } from "@emotion/react";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export const DrawerFormArtist = ({
-  isOpen,
+  open,
   onClose,
   handleSubmit,
   setName,
@@ -36,8 +36,13 @@ export const DrawerFormArtist = ({
     setSocials((prevSocials) => prevSocials.filter((_, i) => i !== index));
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    handleSubmit(); // La función que quieres ejecutar al enviar el formulario.
+}
+
   return (
-    <Drawer open={isOpen} onClose={onClose} anchor="left">
+    <Drawer open={open} onClose={onClose} anchor="left">
       <Grid item xs={3}>
         <Container
           maxWidth="xs"
@@ -56,7 +61,7 @@ export const DrawerFormArtist = ({
           >
             Agregar Artista
           </h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleFormSubmit}>
             <Input
               label="Nombre del Artista"
               style={{ width: "100%", marginBlock: "25px" }}
@@ -121,7 +126,7 @@ export const DrawerFormArtist = ({
               texto="Agregar otra red social"
               onClick={addSocial}
             />
-            <CustomButton variant="contained" texto="AGREGAR" />
+            <CustomButton variant="contained" texto="AGREGAR" type="submit" />
             <CustomButton variant="contained" texto="CANCELAR" onClick={onClose} />
           </form>
         </Container>

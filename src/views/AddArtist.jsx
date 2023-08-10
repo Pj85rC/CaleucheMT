@@ -19,21 +19,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArtistContext from "../context/ArtistContext";
 import { useTheme } from "@emotion/react";
-import { Input } from "../components/UI/Input";
 import { CustomButton } from "../components/UI/CustomButton";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LanguageIcon from '@mui/icons-material/Language';
-import WebIcon from "@mui/icons-material/Web";
 import { ArtistModal } from "../components/UI/ArtistModal";
+import { getSocialIcon } from "../helpers/utils";
+import { DrawerFormArtist } from "../components/UI/DrawerFormArtist";
 
 export const AddArtist = () => {
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [artists, setArtists] = useContext(ArtistContext);
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [genres, setGenres] = useState("");
-  const [socials, setSocials] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -41,22 +34,12 @@ export const AddArtist = () => {
 
   const theme = useTheme();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleOpenDrawer = () => {
+    setDrawerOpen(true);
+  };
 
-    const newArtist = {
-      id: artists.length + 1,
-      name,
-      imageUrl,
-      genres: genres.split(", "),
-      socials: socials.split(", "),
-    };
-
-    setArtists([...artists, newArtist]);
-    setName("");
-    setImageUrl("");
-    setGenres("");
-    setSocials("");
+  const handleCloseDrawer = () => {
+    setDrawerOpen(false);
   };
 
   const startEditing = (artist) => {
@@ -81,33 +64,6 @@ export const AddArtist = () => {
     handleModalClose();
   };
 
-  const getSocialIcon = (social, url) => {
-    let Icon;
-    switch (social) {
-      case "facebook":
-        Icon = FacebookIcon ;
-        break;
-      case "twitter":
-        Icon = TwitterIcon ;
-        break;
-      case "instagram":
-        Icon = InstagramIcon ;
-        break;
-      case "website":
-        Icon = LanguageIcon ;
-        break;
-      default:
-        Icon = WebIcon ;
-        break;
-    }
-
-    return (
-      <IconButton key={social} onClick={() => window.open(url, "_blank")}>
-        <Icon style={{ color: "white" }} />
-      </IconButton>
-    );
-  };
-
   const showDeleteDialog = (id) => {
     setSelectedId(id);
     setDialogOpen(true);
@@ -127,59 +83,14 @@ export const AddArtist = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          marginBottom: theme.spacing(2),
         }}
       >
+
         <Grid container spacing={2}>
-          <Grid item xs={3}>
-            <Container
-              maxWidth="xs"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <h1
-                style={{
-                  color: theme.palette.primary.main,
-                  fontSize: "2.5rem",
-                }}
-              >
-                Agregar Artista
-              </h1>
-              <form onSubmit={handleSubmit}>
-                <Input
-                  label="Nombre del Artista"
-                  style={{ width: "100%", marginBlock: "25px" }}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <Input
-                  label="URL de la imagen"
-                  style={{ width: "100%", marginBlock: "25px" }}
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                />
-                <Input
-                  label="Géneros (separados por coma)"
-                  style={{ width: "100%", marginBlock: "25px" }}
-                  value={genres}
-                  onChange={(e) => setGenres(e.target.value)}
-                />
-                <Input
-                  label="Redes sociales (separados por coma)"
-                  style={{ width: "100%", marginBlock: "25px" }}
-                  value={socials}
-                  onChange={(e) => setSocials(e.target.value)}
-                />
-                <CustomButton variant="contained" texto="AGREGAR" />
-              </form>
-            </Container>
-          </Grid>
           <Grid
             item
-            xs={9}
+            xs={12}
             sx={{
               "& .MuiTableCell-root": { color: theme.palette.primary.main },
             }}
@@ -193,6 +104,13 @@ export const AddArtist = () => {
             >
               Listado de artistas existentes
             </h2>
+              
+              <CustomButton
+                variant="contained"
+                texto="Agregar Artista"
+                onClick={handleOpenDrawer}
+                style={{ marginBottom: theme.spacing(2) }} 
+              />
             <TableContainer>
               <Table>
                 <TableHead>
@@ -241,6 +159,9 @@ export const AddArtist = () => {
           </Grid>
         </Grid>
       </Box>
+
+     
+      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer} />
 
       <ArtistModal
         open={isModalOpen}
