@@ -13,7 +13,8 @@ export const DrawerFormArtist = ({
   setName,
   setImageUrl,
   name,
-  imageUrl
+  imageUrl,
+  ...props
 }) => {
   const theme = useTheme();
 
@@ -42,7 +43,7 @@ export const DrawerFormArtist = ({
 }
 
   return (
-    <Drawer open={open} onClose={onClose} anchor="left">
+    <Drawer variant="persistent" open={open} onClose={onClose} {...props} anchor="left">
       <Grid item xs={3}>
         <Container
           maxWidth="xs"

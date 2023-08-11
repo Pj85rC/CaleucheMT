@@ -19,3 +19,8 @@ a {
 }
 
 
+const drawerStyle = {
+  ".MuiDrawer-paper": {
+    pointerEvents: "auto"
+  }
+};

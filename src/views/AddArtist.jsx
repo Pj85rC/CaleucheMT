@@ -34,6 +34,11 @@ export const AddArtist = () => {
 
   const theme = useTheme();
 
+  const mainContentStyle = {
+    width: isDrawerOpen ? '65%' : '100%',
+    marginLeft: isDrawerOpen ? '35%' : '0'
+  };
+
   const handleOpenDrawer = () => {
     setDrawerOpen(true);
   };
@@ -79,7 +84,8 @@ export const AddArtist = () => {
     <>
       <Box
         sx={{
-          width: "100%",
+          width: mainContentStyle.width,
+          marginLeft: mainContentStyle.marginLeft,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -161,7 +167,7 @@ export const AddArtist = () => {
       </Box>
 
      
-      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer} />
+      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer} BackdropProps={{ invisible: true }}  ModalProps={{ disableEnforceFocus: true }} />
 
       <ArtistModal
         open={isModalOpen}
