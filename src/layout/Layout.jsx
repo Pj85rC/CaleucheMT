@@ -1,5 +1,5 @@
 import { Content } from "./Content";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import { Box } from "@mui/material";
 
 const Layout = () => {

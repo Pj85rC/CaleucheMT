@@ -1,21 +1,25 @@
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 import { login } from "../../api/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { Box, Container, Divider, Typography } from "@mui/material";
-import { Input } from "../../components/Inputs/Input";
-import { CustomButton } from "../../components/UI/CustomButton";
+import { Input } from "../../components/Input";
+import { CustomButton } from "../../components/CustomButton";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../../components/Modals/Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+const validationSchema = yup.object({
+  username: yup.string("Enter your username").required("Username is required"),
+  password: yup.string("Enter your password").required("Password is required"),
+});
 
 export const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const { setUser, setWithToken } = useContext(AuthContext);
-
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -27,28 +31,34 @@ export const Login = () => {
     setOpenModal(false);
   };
 
-  const handleSubmit = async (data) => {
-    try {
-      const response = await login(data.username, data.password, setUser);
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const token = await login(values.username, values.password, setUser);
 
-      if (response && response.status === 200) {
-        setUser();
+        if (token) {
+          toast.success("Login exitoso!");
 
-        if (localStorage.getItem("token")) {
+          localStorage.setItem("token", token);
           setWithToken(true);
+
+          setTimeout(() => {
+            navigate("/admin");
+          }, 100);
+        } else {
+          toast.error("Login fallido...");
         }
-
-        setTimeout(() => {
-          navigate(response.data.data.role === "admin" ? "/admin" : "/");
-        }, 0);
-
-        toast.success("Login exitoso!");
+      } catch (error) {
+        console.error(error);
+        toast.error("Login fallido...");
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Login fallido...");
-    }
-  };
+    },
+  });
 
   return (
     <Box
@@ -71,30 +81,37 @@ export const Login = () => {
         <h1 style={{ color: theme.palette.primary.main, fontSize: "2.5rem" }}>
           Login
         </h1>
-        <Input
-          label="Nombre de usuario"
-          style={{ width: "100%", marginBlock: "25px" }}
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
+        <form
+          onSubmit={formik.handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
-        />
+        >
+          <Input
+            label="Nombre de usuario"
+            name="username"
+            style={{ width: "100%", marginBlock: "25px" }}
+            onChange={formik.handleChange}
+            value={formik.values.username}
+          />
 
-        <Input
-          label="Contraseña"
-          style={{ width: "100%", marginBlock: "25px" }}
-          isPassword
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+          <Input
+            label="Contraseña"
+            name="password"
+            isPassword
+            style={{ width: "100%", marginBlock: "25px" }}
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
 
-        <CustomButton
-          variant="contained"
-          texto="Iniciar Sesion"
-          onClick={() => handleSubmit({ username, password })}
-        />
+          <CustomButton
+            variant="contained"
+            texto="Iniciar Sesion"
+            type="submit"
+          />
+        </form>
         <Typography
           component="a"
           onClick={handleOpenModal}

@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import navLinks from "../../data/navLinks";
+import navLinks from "./navLinks";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

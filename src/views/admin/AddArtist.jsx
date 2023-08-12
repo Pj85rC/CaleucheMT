@@ -20,10 +20,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ArtistContext from "../../context/ArtistContext";
 import { GetArtists, UpdateArtist, DeleteArtist } from "../../api/artists";
 import { useTheme } from "@emotion/react";
-import { CustomButton } from "../../components/UI/CustomButton";
+import { CustomButton } from "../../components/CustomButton";
 import { ArtistModal } from "../../components/Modals/ArtistModal";
 import { getSocialIcon } from "../../helpers/utils";
-import { DrawerFormArtist } from "../../components/UI/DrawerFormArtist";
+import { DrawerFormArtist } from "../../components/DrawerFormArtist";
 
 export const AddArtist = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);

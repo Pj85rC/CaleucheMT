@@ -15,11 +15,42 @@ export const login = async (username, password, setUser) => {
 
     const decodedToken = jwtDecode(token);
 
-    const { userId } = decodedToken;
+    const { userId, userName, role } = decodedToken;
 
     setUser((prevUser) => ({
       ...prevUser,
       userId: userId,
+      userName: userName,
+      role: role,
+    }));
+
+    localStorage.setItem("token", Encrypt(token));
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const register = async (username, email, password, setUser) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/users`, {
+      username,
+      email,
+      password,
+    });
+
+    const token = response.data.token;
+
+    const decodedToken = jwtDecode(token);
+
+    const { userId, userName, role } = decodedToken;
+
+    setUser((prevUser) => ({
+      ...prevUser,
+      userId: userId,
+      userName: userName,
+      role: role,
     }));
 
     localStorage.setItem("token", Encrypt(token));

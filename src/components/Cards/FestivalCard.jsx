@@ -7,7 +7,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { CustomButton } from "../UI/CustomButton";
+import { CustomButton } from "../CustomButton";
 
 export const FestivalCard = ({
   title,
@@ -31,8 +31,6 @@ export const FestivalCard = ({
         onClick={onDetailClick}
         sx={{
           color: theme.palette.secondary.main,
-
-          padding: "25px",
         }}
       >
         <CardMedia component="img" height="250" image={imageUrl} alt={title} />
@@ -44,14 +42,14 @@ export const FestivalCard = ({
             {description}
           </Typography>
         </CardContent>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <CustomButton
-            onClick={onDetailClick}
-            variant="outlined"
-            texto="ver detalle"
-          />
-        </Box>
       </CardActionArea>
+      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <CustomButton
+          onClick={onDetailClick}
+          variant="outlined"
+          texto="ver detalle"
+        />
+      </Box>
     </Card>
   );
 };
