@@ -1,9 +1,8 @@
 // DrawerFormArtist.jsx
-import { Drawer, Container, Grid, IconButton } from "@mui/material";
+import { Drawer, Container, Grid, IconButton, useTheme } from "@mui/material";
 import { CustomButton } from "./CustomButton";
-import { Input } from "./Input";
+import { CustomInput } from "./CustomInput";
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export const DrawerFormArtist = ({
@@ -17,6 +16,7 @@ export const DrawerFormArtist = ({
   ...props
 }) => {
   const theme = useTheme();
+  console.log(theme.palette.background2.default);
 
   const [genres, setGenres] = useState([""]);
   const [socials, setSocials] = useState([""]);
@@ -40,10 +40,18 @@ export const DrawerFormArtist = ({
   const handleFormSubmit = (event) => {
     event.preventDefault();
     handleSubmit(); // La función que quieres ejecutar al enviar el formulario.
-}
+  };
 
   return (
-    <Drawer variant="persistent" open={open} onClose={onClose} {...props} anchor="left">
+    <Drawer
+      variant="persistent"
+      open={open}
+      onClose={onClose}
+      {...props}
+      anchor="left"
+      sx={{ ".MuiDrawer-paper": { backgroundColor: theme.palette.secondary.main } }}
+
+    >
       <Grid item xs={3}>
         <Container
           maxWidth="xs"
@@ -56,20 +64,20 @@ export const DrawerFormArtist = ({
         >
           <h1
             style={{
-              color: theme.palette.primary.main,
+              color: theme.palette.background.default,
               fontSize: "2.5rem",
             }}
           >
             Agregar Artista
-          </h1>
+          </h1>          
           <form onSubmit={handleFormSubmit}>
-            <Input
+            <CustomInput
               label="Nombre del Artista"
               style={{ width: "100%", marginBlock: "25px" }}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <Input
+            <CustomInput
               label="URL de la imagen"
               style={{ width: "100%", marginBlock: "25px" }}
               value={imageUrl}
@@ -80,7 +88,7 @@ export const DrawerFormArtist = ({
                 key={index}
                 style={{ display: "flex", alignItems: "center" }}
               >
-                <Input
+                <CustomInput
                   label={`Género ${index + 1}`}
                   style={{ width: "80%", marginBlock: "25px" }}
                   value={genre}
@@ -106,7 +114,7 @@ export const DrawerFormArtist = ({
                 key={index}
                 style={{ display: "flex", alignItems: "center" }}
               >
-                <Input
+                <CustomInput
                   label={`Red Social ${index + 1}`}
                   style={{ width: "80%", marginBlock: "25px" }}
                   value={social}
@@ -128,7 +136,11 @@ export const DrawerFormArtist = ({
               onClick={addSocial}
             />
             <CustomButton variant="contained" texto="AGREGAR" type="submit" />
-            <CustomButton variant="contained" texto="CANCELAR" onClick={onClose} />
+            <CustomButton
+              variant="contained"
+              texto="CANCELAR"
+              onClick={onClose}
+            />
           </form>
         </Container>
       </Grid>
