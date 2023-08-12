@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { FestivalContext } from "../context/FestivalContext";
+import { FestivalContext } from "../../context/FestivalContext";
 import { Box, Container } from "@mui/material";
-import { FestivalCard } from "../components/UI/FestivalCard";
+import { FestivalCard } from "../../components/Cards/FestivalCard";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";

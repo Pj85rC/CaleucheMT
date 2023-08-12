@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FestivalContext } from "../context/FestivalContext";
-import { GetFestivalLineup } from "../api/festivals";
+import { FestivalContext } from "../../context/FestivalContext";
+import { GetFestivalLineup } from "../../api/festivals";
 import ArtistCard from "../components/UI/ArtistCard";
 import { useTheme } from "@emotion/react";
 import { Box, Container, Grid } from "@mui/material";

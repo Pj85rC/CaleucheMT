@@ -7,8 +7,8 @@ import {
   Snackbar, 
   Alert
 } from "@mui/material";
-import { CustomButton } from "./CustomButton";
-import { Input } from "./Input";
+import { CustomButton } from "../UI/CustomButton";
+import { Input } from "../Inputs/Input";
 import { useState } from 'react'
 
 export const Modal = ({ open, handleClose }) => {

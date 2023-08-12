@@ -7,7 +7,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { CustomButton } from "./CustomButton";
+import { CustomButton } from "../UI/CustomButton";
 
 export const FestivalCard = ({
   title,

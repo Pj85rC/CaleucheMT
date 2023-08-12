@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import { login } from "../api/auth";
-import { AuthContext } from "../context/AuthContext";
+import { login } from "../../api/auth";
+import { AuthContext } from "../../context/AuthContext";
 import { Box, Container, Divider, Typography } from "@mui/material";
-import { Input } from "../components/UI/Input";
-import { CustomButton } from "../components/UI/CustomButton";
+import { Input } from "../../components/Inputs/Input";
+import { CustomButton } from "../../components/UI/CustomButton";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "../components/UI/Modal";
+import { Modal } from "../../components/Modals/Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

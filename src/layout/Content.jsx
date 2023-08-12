@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "../views/Home";
-import { Login } from "../views/Login";
-import { Registro } from "../views/Registro";
+import { Login } from "../views/auth/Login";
+import { Registro } from "../views/auth/Registro";
 import { AboutUs } from "../views/QuienesSomos";
 import { Contact } from "../views/Contactanos";
 import { PerfilUsuario } from "../views/PerfilUsuario";
-import { Festivales } from "../views/Festivales";
-import { DetalleFestivales } from "../views/DetalleFestivales";
-import { AddArtist } from '../views/AddArtist'
+import { Festivales } from "../views/Festivals/Festivales";
+import { DetalleFestivales } from "../views/Festivals/DetalleFestivales";
+import { AddArtist } from '../views/admin/AddArtist'
 
 
 

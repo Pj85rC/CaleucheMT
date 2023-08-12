@@ -1,6 +1,6 @@
 import { Box, Container } from "@mui/material";
-import { Input } from "../components/UI/Input";
-import { CustomButton } from "../components/UI/CustomButton";
+import { Input } from "../../components/Inputs/Input";
+import { CustomButton } from "../../components/UI/CustomButton";
 import { useTheme } from "@emotion/react";
 
 export const Registro = () => {

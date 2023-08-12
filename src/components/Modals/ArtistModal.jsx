@@ -8,7 +8,7 @@ import {
   useTheme
 } from "@mui/material";
 import { useState, useContext, useEffect } from "react";
-import { CustomButton } from "./CustomButton";
+import { CustomButton } from "../UI/CustomButton";
 import ArtistContext from "../../context/ArtistContext";
 
 export const ArtistModal = ({ open, artist, onClose, onSave }) => {

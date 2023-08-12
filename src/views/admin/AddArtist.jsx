@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import {
   Container,
   Box,
@@ -17,26 +17,40 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ArtistContext from "../context/ArtistContext";
+import ArtistContext from "../../context/ArtistContext";
+import { GetArtists, UpdateArtist, DeleteArtist } from "../../api/artists";
 import { useTheme } from "@emotion/react";
-import { CustomButton } from "../components/UI/CustomButton";
-import { ArtistModal } from "../components/UI/ArtistModal";
-import { getSocialIcon } from "../helpers/utils";
-import { DrawerFormArtist } from "../components/UI/DrawerFormArtist";
+import { CustomButton } from "../../components/UI/CustomButton";
+import { ArtistModal } from "../../components/Modals/ArtistModal";
+import { getSocialIcon } from "../../helpers/utils";
+import { DrawerFormArtist } from "../../components/UI/DrawerFormArtist";
 
 export const AddArtist = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [artists, setArtists] = useContext(ArtistContext);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [editingArtist, setEditingArtist] = useState(null);
+  const [artists, setArtists] = useContext(ArtistContext);
+
+  const fetchArtists = async () => {
+    try {
+      const data = await GetArtists();
+      setArtists(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchArtists();
+  }, []);
 
   const theme = useTheme();
 
   const mainContentStyle = {
-    width: isDrawerOpen ? '65%' : '100%',
-    marginLeft: isDrawerOpen ? '35%' : '0'
+    width: isDrawerOpen ? "65%" : "100%",
+    marginLeft: isDrawerOpen ? "35%" : "0",
   };
 
   const handleOpenDrawer = () => {
@@ -57,16 +71,14 @@ export const AddArtist = () => {
     setEditingArtist(null);
   };
 
-  const handleSaveEditedArtist = (updatedArtistData) => {
-    const updatedArtist = {
-      ...editingArtist,
-      ...updatedArtistData,
-    };
-
-    setArtists(
-      artists.map((a) => (a.id === updatedArtist.id ? updatedArtist : a))
-    );
-    handleModalClose();
+  const handleSaveEditedArtist = async (updatedArtistData) => {
+    try {
+      await UpdateArtist(editingArtist.id, updatedArtistData);
+      fetchArtists();
+      handleModalClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const showDeleteDialog = (id) => {
@@ -74,10 +86,15 @@ export const AddArtist = () => {
     setDialogOpen(true);
   };
 
-  const confirmDelete = () => {
-    setArtists(artists.filter((artist) => artist.id !== selectedId));
-    setDialogOpen(false);
-    setSelectedId(null);
+  const confirmDelete = async () => {
+    try {
+      await DeleteArtist(selectedId);
+      fetchArtists();
+      setDialogOpen(false);
+      setSelectedId(null);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -92,7 +109,6 @@ export const AddArtist = () => {
           marginBottom: theme.spacing(2),
         }}
       >
-
         <Grid container spacing={2}>
           <Grid
             item
@@ -110,13 +126,13 @@ export const AddArtist = () => {
             >
               Listado de artistas existentes
             </h2>
-              
-              <CustomButton
-                variant="contained"
-                texto="Agregar Artista"
-                onClick={handleOpenDrawer}
-                style={{ marginBottom: theme.spacing(2) }} 
-              />
+
+            <CustomButton
+              variant="contained"
+              texto="Agregar Artista"
+              onClick={handleOpenDrawer}
+              style={{ marginBottom: theme.spacing(2) }}
+            />
             <TableContainer>
               <Table>
                 <TableHead>
@@ -166,8 +182,7 @@ export const AddArtist = () => {
         </Grid>
       </Box>
 
-     
-      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer}  />
+      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer} />
 
       <ArtistModal
         open={isModalOpen}

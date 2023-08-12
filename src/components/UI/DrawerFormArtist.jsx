@@ -1,7 +1,6 @@
-// DrawerFormArtist.jsx
 import { Drawer, Container, Grid, IconButton, useTheme } from "@mui/material";
 import { CustomButton } from "./CustomButton";
-import { CustomInput } from "./CustomInput";
+import { CustomInput } from "../Inputs/CustomInput";
 import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -39,7 +38,7 @@ export const DrawerFormArtist = ({
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    handleSubmit(); // La función que quieres ejecutar al enviar el formulario.
+    handleSubmit();
   };
 
   return (
@@ -49,8 +48,9 @@ export const DrawerFormArtist = ({
       onClose={onClose}
       {...props}
       anchor="left"
-      sx={{ ".MuiDrawer-paper": { backgroundColor: theme.palette.secondary.main } }}
-
+      sx={{
+        ".MuiDrawer-paper": { backgroundColor: theme.palette.secondary.main },
+      }}
     >
       <Grid item xs={3}>
         <Container
@@ -69,7 +69,7 @@ export const DrawerFormArtist = ({
             }}
           >
             Agregar Artista
-          </h1>          
+          </h1>
           <form onSubmit={handleFormSubmit}>
             <CustomInput
               label="Nombre del Artista"
