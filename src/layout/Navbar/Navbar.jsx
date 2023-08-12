@@ -67,7 +67,7 @@ const Navbar = () => {
                   alignItems: "center",
                 }}
               >
-                {navLinks.map((i) => (
+                {navLinks(user).map((i) => (
                   <Box
                     key={i.title}
                     component={NavLink}
