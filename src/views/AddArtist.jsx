@@ -167,7 +167,7 @@ export const AddArtist = () => {
       </Box>
 
      
-      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer} BackdropProps={{ invisible: true }}  ModalProps={{ disableEnforceFocus: true }} />
+      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer}  />
 
       <ArtistModal
         open={isModalOpen}
