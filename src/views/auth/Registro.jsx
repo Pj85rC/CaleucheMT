@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Box, Container } from "@mui/material";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/Inputs/Input";
 import { CustomButton } from "../../components/CustomButton";
 import { useTheme } from "@emotion/react";
 import { register } from "../../api/auth";

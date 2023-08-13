@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { login } from "../../api/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { Box, Container, Divider, Typography } from "@mui/material";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/Inputs/Input";
 import { CustomButton } from "../../components/CustomButton";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";

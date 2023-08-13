@@ -7,7 +7,7 @@ import {
   Snackbar, 
   Alert
 } from "@mui/material";
-import { CustomButton } from "../UI/CustomButton";
+import { CustomButton } from "../CustomButton";
 import { Input } from "../Inputs/Input";
 import { useState } from 'react'
 

@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
-import Timeline from "../components/UI/timeline";
+import Timeline from "../components/Timeline/Timeline";
 import timelineEvents from "../data/events.json";
 import { useTheme } from "@emotion/react";
 import InstagramIcon from "@mui/icons-material/Instagram";

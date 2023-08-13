@@ -1,6 +1,6 @@
 import { Drawer, Container, Grid, IconButton, useTheme } from "@mui/material";
 import { CustomButton } from "./CustomButton";
-import { CustomInput } from "../Inputs/CustomInput";
+import { CustomInput } from "../components/Inputs/CustomInput";
 import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 
