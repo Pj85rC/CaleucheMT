@@ -24,8 +24,10 @@ export const login = async (username, password, setUser) => {
       role: role,
     }));
 
-    localStorage.setItem("token", Encrypt(token));
-    return response.data;
+    const encryptedToken = Encrypt(token);
+
+    localStorage.setItem("token", encryptedToken);
+    return decodedToken;
   } catch (error) {
     console.log(error);
     throw error;

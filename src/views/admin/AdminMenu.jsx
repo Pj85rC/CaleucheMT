@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { CustomButton } from "../../components/CustomButton";
 import { useNavigate } from "react-router-dom";

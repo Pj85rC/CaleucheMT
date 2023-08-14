@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { Decrypt } from "../helpers/crypt";
+import jwtDecode from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -17,6 +19,23 @@ export const AuthProvider = ({ children }) => {
     withToken,
     setWithToken,
   };
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      const decryptedToken = Decrypt(token);
+      console.log("Decrypted Token: ", decryptedToken);
+      const decodedToken = jwtDecode(decryptedToken);
+      const { userId, userName, role } = decodedToken;
+      setUser((prevUser) => ({
+        ...prevUser,
+        userId: userId,
+        userName: userName,
+        role: role,
+      }));
+    }
+  }, [token]);
 
   return (
     <AuthContext.Provider value={globalStates}>{children}</AuthContext.Provider>

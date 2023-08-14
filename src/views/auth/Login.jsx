@@ -13,8 +13,12 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 const validationSchema = yup.object({
-  username: yup.string("Enter your username").required("Username is required"),
-  password: yup.string("Enter your password").required("Password is required"),
+  username: yup
+    .string("Ingresa tu nombre de usuario")
+    .required("El nombre de usuario es requerido"),
+  password: yup
+    .string("Ingresa tu contraseña")
+    .required("La contraseña es requerida"),
 });
 
 export const Login = () => {
@@ -39,20 +43,22 @@ export const Login = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const token = await login(values.username, values.password, setUser);
+        const decodedToken = await login(
+          values.username,
+          values.password,
+          setUser
+        );
 
-        if (token) {
-          toast.success("Login exitoso!");
-
-          localStorage.setItem("token", token);
-          setWithToken(true);
-
-          setTimeout(() => {
-            navigate("/admin");
-          }, 100);
-        } else {
-          toast.error("Login fallido...");
+        if (!decodedToken) {
+          return toast.error("Login fallido...");
         }
+
+        toast.success("Login exitoso!");
+        setWithToken(true);
+
+        const navigateTo =
+          decodedToken.role === "admin" ? "/admin" : "/profile";
+        setTimeout(() => navigate(navigateTo), 100);
       } catch (error) {
         console.error(error);
         toast.error("Login fallido...");

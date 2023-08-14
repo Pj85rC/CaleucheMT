@@ -1,44 +1,78 @@
 import { Drawer, Container, Grid, IconButton, useTheme } from "@mui/material";
 import { CustomButton } from "./CustomButton";
 import { CustomInput } from "../components/Inputs/CustomInput";
-import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useFormik } from "formik";
+import { CreateArtist } from "../api/artists";
+import * as yup from "yup";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export const DrawerFormArtist = ({
-  open,
-  onClose,
-  handleSubmit,
-  setName,
-  setImageUrl,
-  name,
-  imageUrl,
-  ...props
-}) => {
+export const DrawerFormArtist = ({ open, onClose, onArtistAdded }) => {
   const theme = useTheme();
-  console.log(theme.palette.background2.default);
 
-  const [genres, setGenres] = useState([""]);
-  const [socials, setSocials] = useState([""]);
-
-  const addGenre = () => {
-    setGenres((prevGenres) => [...prevGenres, ""]);
+  const initialValues = {
+    name: "",
+    imageUrl: "",
+    genres: [""],
+    socials: [{ platform: "", url: "" }],
   };
 
-  const removeGenre = (index) => {
-    setGenres((prevGenres) => prevGenres.filter((_, i) => i !== index));
+  const validationSchema = yup.object({
+    name: yup.string().required("Name is required"),
+    imageUrl: yup
+      .string()
+      .url("Must be a valid URL")
+      .required("Image URL is required"),
+    genres: yup.array().of(yup.string().required("Genre is required")),
+    socials: yup.array().of(
+      yup.object({
+        platform: yup.string().required("Platform is required"),
+        url: yup
+          .string()
+          .url("Must be a valid URL")
+          .required("URL is required"),
+      })
+    ),
+  });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const artist = {
+          name: values.name,
+          photo_url: values.imageUrl,
+          genres: values.genres,
+          links: values.socials,
+        };
+
+        await CreateArtist(artist);
+        toast.success("Artist has been successfully added!");
+        onClose();
+        onArtistAdded();
+      } catch (error) {
+        console.error(error);
+        toast.error(
+          "An error occurred while adding the artist. Please try again."
+        );
+      }
+    },
+  });
+
+  const handleAdd = (field) => {
+    formik.setFieldValue(field, [
+      ...formik.values[field],
+      field === "socials" ? { platform: "", url: "" } : "",
+    ]);
   };
 
-  const addSocial = () => {
-    setSocials((prevSocials) => [...prevSocials, ""]);
-  };
-
-  const removeSocial = (index) => {
-    setSocials((prevSocials) => prevSocials.filter((_, i) => i !== index));
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    handleSubmit();
+  const handleRemove = (field, index) => {
+    formik.setFieldValue(
+      field,
+      formik.values[field].filter((_, i) => i !== index)
+    );
   };
 
   return (
@@ -46,7 +80,6 @@ export const DrawerFormArtist = ({
       variant="persistent"
       open={open}
       onClose={onClose}
-      {...props}
       anchor="left"
       sx={{
         ".MuiDrawer-paper": { backgroundColor: theme.palette.secondary.main },
@@ -70,20 +103,20 @@ export const DrawerFormArtist = ({
           >
             Agregar Artista
           </h1>
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <CustomInput
               label="Nombre del Artista"
               style={{ width: "100%", marginBlock: "25px" }}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formik.values.name}
+              onChange={formik.handleChange("name")}
             />
             <CustomInput
               label="URL de la imagen"
               style={{ width: "100%", marginBlock: "25px" }}
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
+              value={formik.values.imageUrl}
+              onChange={formik.handleChange("imageUrl")}
             />
-            {genres.map((genre, index) => (
+            {formik.values.genres.map((genre, index) => (
               <div
                 key={index}
                 style={{ display: "flex", alignItems: "center" }}
@@ -92,14 +125,11 @@ export const DrawerFormArtist = ({
                   label={`Género ${index + 1}`}
                   style={{ width: "80%", marginBlock: "25px" }}
                   value={genre}
-                  onChange={(e) => {
-                    const newValue = e.target.value;
-                    setGenres((prevGenres) =>
-                      prevGenres.map((g, i) => (i === index ? newValue : g))
-                    );
-                  }}
+                  onChange={(e) =>
+                    formik.setFieldValue(`genres.${index}`, e.target.value)
+                  }
                 />
-                <IconButton onClick={() => removeGenre(index)}>
+                <IconButton onClick={() => handleRemove("genres", index)}>
                   <DeleteIcon />
                 </IconButton>
               </div>
@@ -107,25 +137,33 @@ export const DrawerFormArtist = ({
             <CustomButton
               variant="contained"
               texto="Agregar otro género"
-              onClick={addGenre}
+              onClick={() => handleAdd("genres")}
             />
-            {socials.map((social, index) => (
+            {formik.values.socials.map((social, index) => (
               <div
                 key={index}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <CustomInput
-                  label={`Red Social ${index + 1}`}
-                  style={{ width: "80%", marginBlock: "25px" }}
-                  value={social}
-                  onChange={(e) => {
-                    const newValue = e.target.value;
-                    setSocials((prevSocials) =>
-                      prevSocials.map((s, i) => (i === index ? newValue : s))
-                    );
-                  }}
+                  label={`Plataforma ${index + 1}`}
+                  style={{ width: "40%", marginBlock: "25px" }}
+                  value={social.platform}
+                  onChange={(e) =>
+                    formik.setFieldValue(
+                      `socials.${index}.platform`,
+                      e.target.value
+                    )
+                  }
                 />
-                <IconButton onClick={() => removeSocial(index)}>
+                <CustomInput
+                  label={`URL ${index + 1}`}
+                  style={{ width: "40%", marginBlock: "25px" }}
+                  value={social.url}
+                  onChange={(e) =>
+                    formik.setFieldValue(`socials.${index}.url`, e.target.value)
+                  }
+                />
+                <IconButton onClick={() => handleRemove("socials", index)}>
                   <DeleteIcon />
                 </IconButton>
               </div>
@@ -133,7 +171,7 @@ export const DrawerFormArtist = ({
             <CustomButton
               variant="contained"
               texto="Agregar otra red social"
-              onClick={addSocial}
+              onClick={() => handleAdd("socials")}
             />
             <CustomButton variant="contained" texto="AGREGAR" type="submit" />
             <CustomButton

@@ -157,8 +157,12 @@ export const AddArtist = () => {
                       </TableCell>
                       <TableCell>{artist.genres.join(", ")}</TableCell>
                       <TableCell>
-                        {Object.keys(artist.socials).map((social) =>
-                          getSocialIcon(social, artist.socials[social])
+                        {artist.links ? (
+                          artist.links.map((link) =>
+                            getSocialIcon(link.platform, link.url)
+                          )
+                        ) : (
+                          <div>No socials available</div>
                         )}
                       </TableCell>
                       <TableCell>
@@ -182,7 +186,11 @@ export const AddArtist = () => {
         </Grid>
       </Box>
 
-      <DrawerFormArtist open={isDrawerOpen} onClose={handleCloseDrawer} />
+      <DrawerFormArtist
+        open={isDrawerOpen}
+        onClose={handleCloseDrawer}
+        onArtistAdded={fetchArtists}
+      />
 
       <ArtistModal
         open={isModalOpen}
