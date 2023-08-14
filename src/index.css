@@ -4,18 +4,19 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #09071D !important;
+  background-color: #09071d !important;
 }
 
 a {
-  color: #09071D;
+  color: #09071d;
   text-decoration: none;
   font-size: 18px;
-
 }
 
 .myStack {
   justify-content: space-between;
 }
 
-
+.carousel-container {
+  padding-bottom: 75px;
+}
