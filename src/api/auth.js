@@ -15,12 +15,13 @@ export const login = async (username, password, setUser) => {
 
     const decodedToken = jwtDecode(token);
 
-    const { userId, userName, role } = decodedToken;
+    const { userId, userName, email, role } = decodedToken;
 
     setUser((prevUser) => ({
       ...prevUser,
       userId: userId,
       userName: userName,
+      email: email,
       role: role,
     }));
 
