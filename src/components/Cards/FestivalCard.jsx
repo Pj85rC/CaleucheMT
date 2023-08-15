@@ -9,10 +9,10 @@ import {
   useTheme,
   IconButton,
 } from "@mui/material";
-import { CustomButton } from "../CustomButton";
 import { AuthContext } from "../../context/AuthContext";
 import { FavoritesContext } from "../../context/FavContext";
 import { addFavorite, removeFavorite } from "../../api/favorites";
+import { CustomButton } from "../CustomButton";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -27,14 +27,23 @@ export const FestivalCard = ({
   const theme = useTheme();
   const { user } = useContext(AuthContext);
   const { favorites, setFavorites } = useContext(FavoritesContext);
-
-  const [favorited, setFavorited] = useState(false);
-
-  useEffect(() => {
-    setFavorited(favorites.some((fav) => fav.festival_id === id));
-  }, [favorites, id]);
-
   const userId = user.userId;
+
+  const isFavorited = favorites.some((fav) => fav.festival_id === id);
+
+  const toggleFavorite = async () => {
+    if (isFavorited) {
+      await removeFavorite(id, userId);
+      const updatedFavorites = favorites.filter(
+        (fav) => fav.festival_id !== id
+      );
+      setFavorites(updatedFavorites);
+    } else {
+      await addFavorite(id, userId);
+      const newFavorite = { festival_id: id };
+      setFavorites([...favorites, newFavorite]);
+    }
+  };
 
   return (
     <Card
@@ -57,16 +66,11 @@ export const FestivalCard = ({
         <IconButton
           onClick={(e) => {
             e.stopPropagation();
-            if (favorited) {
-              removeFavorite(id, userId, favorites, setFavorites);
-            } else {
-              addFavorite(id, userId, favorites, setFavorites);
-            }
-            setFavorited(!favorited);
+            toggleFavorite();
           }}
           sx={{ position: "absolute", top: "45px", right: "45px" }}
         >
-          {favorited ? (
+          {isFavorited ? (
             <FavoriteIcon color="error" sx={{ strokeWidth: 2 }} />
           ) : (
             <FavoriteBorderIcon
