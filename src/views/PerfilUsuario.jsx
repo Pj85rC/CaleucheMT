@@ -1,14 +1,14 @@
 import { Avatar, Typography, Box, Paper, Divider } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from 'react';
 
 export const PerfilUsuario = () => {
-  // Datos simulados, eventualmente reemplazarías esto con datos de tu endpoint
-  const userData = {
-    avatar: null, // Puedes poner aquí una URL si tienes un avatar por defecto
-    username: 'Juanito92',
-    email: 'juanito92@email.com',
-    rol: 'Administrador'
-  };
+  const { user } = useContext(AuthContext);
+  
+  if (!user || !user.userName) {
+    return <Typography>No hay datos de usuario disponibles</Typography>;
+  }
 
   return (
     <Box
@@ -23,14 +23,12 @@ export const PerfilUsuario = () => {
         <Box display="flex" flexDirection="column" alignItems="center">
           <Avatar
             style={{ width: 80, height: 80 }}
-            src={userData.avatar}
-            alt={userData.username}
+            alt={user.userName}
           >
-            {/* Si no hay una imagen de avatar, muestra un ícono de usuario */}
-            {!userData.avatar && <AccountCircle style={{ fontSize: 80 }} />}
+            <AccountCircle style={{ fontSize: 80 }} />
           </Avatar>
           <Typography variant="h4" style={{ marginTop: 20 }}>
-            ¡Bienvenido, {userData.username}!
+            ¡Bienvenido, {user.userName}!
           </Typography>
         </Box>
 
@@ -38,12 +36,12 @@ export const PerfilUsuario = () => {
 
         <Box mt={2}>
           <Typography variant="h6">Correo electrónico:</Typography>
-          <Typography variant="body1">{userData.email}</Typography>
+          <Typography variant="body1">{user.email}</Typography>
         </Box>
 
         <Box mt={2}>
           <Typography variant="h6">Rol:</Typography>
-          <Typography variant="body1">{userData.rol}</Typography>
+          <Typography variant="body1">{user.role}</Typography>
         </Box>
       </Paper>
     </Box>
