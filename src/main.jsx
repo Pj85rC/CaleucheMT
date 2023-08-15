@@ -14,9 +14,8 @@ import { MainProvider } from "./context/MainContext.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { FestivalProvider } from "./context/FestivalContext.jsx";
 import { ArtistProvider } from "./context/ArtistContext.jsx";
-import theme from "./styles/theme.jsx"
-
-
+import theme from "./styles/theme.jsx";
+import { FavoritesProvider } from "./context/FavContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -24,12 +23,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <FestivalProvider>
           <ArtistProvider>
-            <BrowserRouter>
-              <CssBaseline />
-              <ThemeProvider theme={theme}>
-                <App />
-              </ThemeProvider>
-            </BrowserRouter>
+            <FavoritesProvider>
+              <BrowserRouter>
+                <CssBaseline />
+                <ThemeProvider theme={theme}>
+                  <App />
+                </ThemeProvider>
+              </BrowserRouter>
+            </FavoritesProvider>
           </ArtistProvider>
         </FestivalProvider>
       </AuthProvider>

@@ -66,6 +66,7 @@ export const Festivales = () => {
             {festivals.map((festival, i) => (
               <div key={i} style={{ margin: "0 15px" }}>
                 <FestivalCard
+                  id={festival.id}
                   title={festival.name}
                   imageUrl={festival.photoURL}
                   description={festival.description}
