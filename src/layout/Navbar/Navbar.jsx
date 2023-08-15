@@ -19,6 +19,7 @@ import navLinks from "./navLinks";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, setUser, setWithToken } = useContext(AuthContext);
+  console.log("Qué obtendremos por USER?: ", user);
   const navigate = useNavigate();
 
   function handleLogout() {

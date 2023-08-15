@@ -32,7 +32,7 @@ const navLinks = (user) => [
     icon: AdminPanelSettings,
   },
   user?.role === "user" && {
-    title: `HOLA ${user.username}`,
+    title: `HOLA ${user.userName}`,
     path: "/profile",
     icon: AccountCircle,
   },
