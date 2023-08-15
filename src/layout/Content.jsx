@@ -4,7 +4,7 @@ import { Login } from "../views/auth/Login";
 import { Registro } from "../views/auth/Registro";
 import { AboutUs } from "../views/QuienesSomos";
 import { Contact } from "../views/Contactanos";
-import { PerfilUsuario } from "../views/PerfilUsuario";
+import { UserProfile } from "../views/UserProfile";
 import { Festivales } from "../views/festivals/Festivales";
 import { DetalleFestivales } from "../views/festivals/DetalleFestivales";
 import { AddArtist } from "../views/admin/AddArtist";
@@ -25,7 +25,7 @@ export const Content = () => {
           path="/profile"
           element={
             <RouteGuard requiredRoles={["user"]}>
-              <PerfilUsuario />
+              <UserProfile />
             </RouteGuard>
           }
         />

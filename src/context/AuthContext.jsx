@@ -29,11 +29,12 @@ export const AuthProvider = ({ children }) => {
         const decryptedToken = Decrypt(token);
         console.log("Decrypted Token: ", decryptedToken);
         const decodedToken = jwtDecode(decryptedToken);
-        const { userId, userName, role } = decodedToken;
+        const { userId, userName, role, email } = decodedToken;
         setUser({
           userId: userId,
           userName: userName,
           role: role,
+          email: email,
         });
       } catch (error) {
         console.error("Error decoding the JWT token", error);
