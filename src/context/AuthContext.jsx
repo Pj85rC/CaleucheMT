@@ -8,10 +8,9 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
     userId: null,
     userName: null,
-    email:null,
     role: null,
   });
-
+  const [isLoading, setIsLoading] = useState(true);
   const [withToken, setWithToken] = useState(false);
 
   const globalStates = {
@@ -19,24 +18,30 @@ export const AuthProvider = ({ children }) => {
     setUser,
     withToken,
     setWithToken,
+    isLoading,
   };
 
-  const token = localStorage.getItem("token");
-
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     if (token) {
-      const decryptedToken = Decrypt(token);
-      console.log("Decrypted Token: ", decryptedToken);
-      const decodedToken = jwtDecode(decryptedToken);
-      const { userId, userName, role } = decodedToken;
-      setUser((prevUser) => ({
-        ...prevUser,
-        userId: userId,
-        userName: userName,
-        role: role,
-      }));
+      try {
+        const decryptedToken = Decrypt(token);
+        console.log("Decrypted Token: ", decryptedToken);
+        const decodedToken = jwtDecode(decryptedToken);
+        const { userId, userName, role } = decodedToken;
+        setUser({
+          userId: userId,
+          userName: userName,
+          role: role,
+        });
+      } catch (error) {
+        console.error("Error decoding the JWT token", error);
+      }
     }
-  }, [token]);
+
+    setIsLoading(false);
+  }, []);
 
   return (
     <AuthContext.Provider value={globalStates}>{children}</AuthContext.Provider>
