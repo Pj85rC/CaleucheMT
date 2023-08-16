@@ -28,16 +28,14 @@ const Navbar = () => {
       userId: null,
       userName: null,
       role: null,
-      email: null
-      });
+      email: null,
+    });
     navigate("/login");
   }
 
   return (
     <>
-      <AppBar
-        position="fixed"
-      >
+      <AppBar position="fixed">
         <Toolbar sx={{ height: "100%", display: "flex", alignItems: "center" }}>
           <Grid container alignItems="center">
             <Grid item xs={12} sm={3} md={4} container alignItems="center">
@@ -50,8 +48,7 @@ const Navbar = () => {
               >
                 <MenuIcon />
               </IconButton>
-              <img src={logo_blue} alt="Caleuche" style={{height: '90px'}} />
-
+              <img src={logo_blue} alt="Caleuche" style={{ height: "90px" }} />
             </Grid>
 
             <Grid item xs={false} sm={9} md={8}>

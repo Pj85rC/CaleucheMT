@@ -8,18 +8,10 @@ const Timeline = ({ events }) => {
       {events.map((event, index) => (
         <Box key={index} className="timeline-event">
           <Typography
-            variant="subtitle2"
-            color="white"
-            className="timeline-date"
-            sx={{ marginBottom: 2 }}
-          >
-            {event.date}
-          </Typography>
-          <Typography
             variant="h5"
             color="white"
             className="timeline-header"
-            sx={{ marginBottom: 3 }}
+            sx={{ my: 3 }}
           >
             {event.title}
           </Typography>
@@ -27,9 +19,17 @@ const Timeline = ({ events }) => {
             className="timeline-circle"
             style={{
               backgroundImage: `url(${event.photo})`,
-              marginBottom: "25px",
+              my: "25px",
             }}
           ></div>
+            <Typography
+              variant="subtitle2"
+              color="white"
+              className="timeline-date"
+              sx={{ my: 2 }}
+            >
+              {event.date}
+            </Typography>
           <Typography variant="body1" color="white" className="timeline-text">
             {event.description}
           </Typography>

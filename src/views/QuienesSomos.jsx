@@ -15,7 +15,6 @@ export const AboutUs = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        
       }}
     >
       <Container maxWidth="xl">
@@ -29,7 +28,13 @@ export const AboutUs = () => {
           Quienes Somos
         </h1>
 
-        <Typography variant="h6" color="white" align="center" paragraph>
+        <Typography
+          fontSize="20px"
+          fontWeight="300"
+          color="white"
+          align="center"
+          paragraph
+        >
           Mentalizados en acercar el metal al cono sur y a los metalheads al
           viejo continente en búsqueda de una de las mejores experiencias de
           vida, creamos este proyecto intentando entregar confiabilidad y seguir
@@ -60,6 +65,7 @@ export const AboutUs = () => {
               justifyContent: "center",
               mt: "20px",
               width: "100%",
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             {[
@@ -83,6 +89,7 @@ export const AboutUs = () => {
                   flexDirection: "column",
                   alignItems: "center",
                   mx: "50px",
+                  my: { xs: '20px', sm: '0px' }
                 }}
               >
                 <Box
