@@ -24,7 +24,12 @@ const Navbar = () => {
   function handleLogout() {
     localStorage.clear();
     setWithToken(false);
-    setUser(null);
+    setUser({
+      userId: null,
+      userName: null,
+      role: null,
+      email: null
+      });
     navigate("/login");
   }
 

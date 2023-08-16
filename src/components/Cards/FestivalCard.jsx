@@ -27,6 +27,7 @@ export const FestivalCard = ({
   const theme = useTheme();
   const { user } = useContext(AuthContext);
   const { favorites, setFavorites } = useContext(FavoritesContext);
+  
   const userId = user.userId;
 
   const isFavorited = favorites.some((fav) => fav.festival_id === id);
