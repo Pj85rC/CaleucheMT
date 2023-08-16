@@ -11,10 +11,10 @@ import {
   IconButton,
   Stack,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import navLinks from "./navLinks";
+import logo_blue from "/public/logo_blue.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -37,7 +37,6 @@ const Navbar = () => {
     <>
       <AppBar
         position="fixed"
-        sx={{ backgroundColor: "#F9F9F9", color: "#09071D", height: "90px" }}
       >
         <Toolbar sx={{ height: "100%", display: "flex", alignItems: "center" }}>
           <Grid container alignItems="center">
@@ -51,16 +50,8 @@ const Navbar = () => {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography
-                className="title"
-                variant="h6"
-                fontSize="23px"
-                component={NavLink}
-                to="/"
-                sx={{ flexGrow: 1 }}
-              >
-                Caleuche
-              </Typography>
+              <img src={logo_blue} alt="Caleuche" style={{height: '90px'}} />
+
             </Grid>
 
             <Grid item xs={false} sm={9} md={8}>

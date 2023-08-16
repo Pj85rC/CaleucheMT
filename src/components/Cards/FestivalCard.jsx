@@ -13,7 +13,6 @@ import { AuthContext } from "../../context/AuthContext";
 import { FavoritesContext } from "../../context/FavContext";
 import { addFavorite, removeFavorite } from "../../api/favorites";
 import { CustomButton } from "../CustomButton";
-
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
@@ -27,7 +26,7 @@ export const FestivalCard = ({
   const theme = useTheme();
   const { user } = useContext(AuthContext);
   const { favorites, setFavorites } = useContext(FavoritesContext);
-  
+
   const userId = user.userId;
 
   const isFavorited = favorites.some((fav) => fav.festival_id === id);
