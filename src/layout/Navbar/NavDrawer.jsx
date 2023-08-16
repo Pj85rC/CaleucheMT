@@ -6,8 +6,11 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 const NavDrawer = ({ navLinks, NavLink, setOpen, handleLogout }) => {
+  const theme = useTheme();
+
   return (
     <Box sx={{ width: 250, bgcolor: "#F9F9F9" }}>
       <nav>
@@ -28,9 +31,9 @@ const NavDrawer = ({ navLinks, NavLink, setOpen, handleLogout }) => {
                   }}
                 >
                   <ListItemIcon>
-                    <IconComponent />
+                    <IconComponent style={{ color: theme.palette.background.default }} />
                   </ListItemIcon>
-                  <ListItemText primary={i.title} />
+                  <ListItemText primary={i.title} sx={{ color: theme.palette.background.default }}  />
                 </ListItemButton>
               </ListItem>
             );
